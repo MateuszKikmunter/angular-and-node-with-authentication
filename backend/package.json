@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MateuszKikmunter/angular-and-node-with-authentication/issues"
   },
-  "homepage": "https://github.com/MateuszKikmunter/angular-and-node-with-authentication#readme"
+  "homepage": "https://github.com/MateuszKikmunter/angular-and-node-with-authentication#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
