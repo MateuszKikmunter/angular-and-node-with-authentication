@@ -1,1 +1,7 @@
 <p>messages works!</p>
+
+<div>
+    <ul>
+        <li *ngFor="let message of messages"> {{ message.owner }} says {{ message.text }}</li>
+    </ul>
+</div>
