@@ -1,7 +1,13 @@
 <p>messages works!</p>
 
 <div>
-    <ul>
-        <li *ngFor="let message of messages"> {{ message.owner }} says {{ message.text }}</li>
-    </ul>
+    <mat-card class="example-card" style="margin: 8px;" *ngFor="let message of messages">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ message.owner }}'s message</mat-card-title>
+        <mat-card-content>
+            <p>
+                {{ message.text }}
+            </p>
+        </mat-card-content>
+    </mat-card>
 </div>
