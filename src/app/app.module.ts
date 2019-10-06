@@ -7,20 +7,18 @@ import { HttpClientModule } from '@angular/common/http';
 //Application imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MessagesComponent } from './messages/messages.component';
-import { MaterialModule } from './material/material.module';
+import { MessageModule } from './message/message.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MessagesComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
