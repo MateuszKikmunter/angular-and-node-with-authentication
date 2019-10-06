@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: "messages", component: MessagesComponent },
-  { path: "**", redirectTo: "messages", pathMatch: "full" }
+  { path: "index", component: MessagesComponent },
+  { path: "**", redirectTo: "index", pathMatch: "full" }
 ];
 
 @NgModule({
