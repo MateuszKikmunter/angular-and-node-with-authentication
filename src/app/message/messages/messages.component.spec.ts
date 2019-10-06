@@ -1,6 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MessageComponent } from './../message/message.component';
 import { MessagesComponent } from './messages.component';
+import { MaterialModule } from './../../material/material.module';
 
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
@@ -8,7 +11,14 @@ describe('MessagesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessagesComponent ]
+      declarations: [ 
+        MessagesComponent,
+        MessageComponent
+       ],
+       imports: [
+         MaterialModule,
+         HttpClientModule
+       ]
     })
     .compileComponents();
   }));
