@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
-app.get("/messages", (req, res) => {
+app.get("/api/messages", (req, res) => {
     
     const messages = [
         { text: "hello", owner: "Matt" },

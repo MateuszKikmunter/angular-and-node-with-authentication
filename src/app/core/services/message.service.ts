@@ -8,7 +8,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class MessageService {
 
-  private apiUrl: string = `http://localhost:4201/messages`;
+  private apiUrl: string = `http://localhost:4201/api/messages`;
 
   private messageSubject: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
   public readonly messages$: Observable<object[]> = this.messageSubject.asObservable();
