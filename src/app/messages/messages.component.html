@@ -1,6 +1,6 @@
 <p>messages works!</p>
 
-<div>
+<div *ngIf="messages$ | async as messages; else loading">
     <mat-card class="example-card" style="margin: 8px;" *ngFor="let message of messages">
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ message.owner }}'s message</mat-card-title>
@@ -11,3 +11,7 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<ng-template #loading>
+    Loading data...
+</ng-template>

@@ -1,4 +1,7 @@
+import { MessageService } from './../core/services/message.service';
 import { Component, OnInit } from '@angular/core';
+
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -7,15 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  get messages(): object[] {
-    return [
-      { text: "hello", owner: "Matt" },
-      { text: "duck!! duck!!", owner: "Ducky" },
-      { text: "you shall not pass!", owner: "Gandalf" },
-    ]
+  get messages$(): Observable<object[]> {
+    return this.messgeService.messages$;
   }
 
-  constructor() { }
+  constructor(private messgeService: MessageService) { }
 
   ngOnInit() {
   }
