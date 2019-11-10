@@ -13,7 +13,7 @@
             <textarea rows="5" matInput placeholder="Message" formControlName="messageContent"></textarea>
         </mat-form-field>
 
-        <button class="control-center mb-10" 
+        <button class="control-center mb-10"
             mat-button 
             [disabled]="messageForm?.invalid"
             (click)="saveMessage()">Submit</button>

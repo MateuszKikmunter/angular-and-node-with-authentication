@@ -24,7 +24,7 @@ export class MessageService {
     });
   }
 
-  addMessage(message: Message): void {
+  public addMessage(message: Message): void {
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
       "Accept": "application/json"
