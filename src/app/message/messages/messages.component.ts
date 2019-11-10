@@ -12,7 +12,7 @@ import { MessageService } from '../../core/services/message.service';
 })
 export class MessagesComponent implements OnInit {
 
-  get messages$(): Observable<object[]> {
+  get messages$(): Observable<Message[]> {
     return this.messgeService.messages$;
   }
 
