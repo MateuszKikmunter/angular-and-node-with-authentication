@@ -5,10 +5,6 @@
             <input matInput placeholder="Name" formControlName="messageOwner">
         </mat-form-field>
 
-        <div *ngIf="messageOwner?.errors.required">
-            <em>Name is required</em>
-        </div>
-
         <mat-form-field class="control-center control-center--width-50">
             <textarea rows="5" matInput placeholder="Message" formControlName="messageContent"></textarea>
         </mat-form-field>

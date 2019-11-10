@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { Message } from 'src/app/shared/models/message.data-model';
 
@@ -12,6 +12,14 @@ export class NewMessageComponent implements OnInit {
 
   public messageForm: FormGroup;
 
+  get messageOwner(): AbstractControl {
+    return this.messageForm.get("messageOwner");
+  }
+
+  get messageContent(): AbstractControl {
+    return this.messageForm.get("messageContent");
+  }
+
   @Output() messageAdd: EventEmitter<Message> = new EventEmitter<Message>();
 
   constructor(private formBuilder: FormBuilder) { }
@@ -23,8 +31,8 @@ export class NewMessageComponent implements OnInit {
   public saveMessage(): void {
     if (this.messageForm.valid) {
       const message: Message = {
-        owner: this.messageForm.get("messageOwner").value,
-        content: this.messageForm.get("messageContent").value
+        owner: this.messageOwner.value,
+        content: this.messageContent.value
       };
 
       this.messageAdd.emit(message);
