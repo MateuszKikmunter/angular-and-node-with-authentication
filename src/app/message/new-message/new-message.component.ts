@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { MessageService } from 'src/app/core/services/message.service';
 import { Message } from 'src/app/shared/models/message.data-model';
 
 @Component({
@@ -13,9 +12,9 @@ export class NewMessageComponent implements OnInit {
 
   public messageForm: FormGroup;
 
-  constructor(
-    private messageService: MessageService,
-    private formBuilder: FormBuilder) { }
+  @Output() messageAdd: EventEmitter<Message> = new EventEmitter<Message>();
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.buildForm();
@@ -28,7 +27,7 @@ export class NewMessageComponent implements OnInit {
         content: this.messageForm.get("messageContent").value
       };
 
-      this.messageService.addMessage(message);
+      this.messageAdd.emit(message);
     }
   }
 

@@ -1,3 +1,4 @@
+import { Message } from 'src/app/shared/models/message.data-model';
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -18,6 +19,10 @@ export class MessagesComponent implements OnInit {
   constructor(private messgeService: MessageService) { }
 
   ngOnInit() {
+  }
+
+  public onMessageAdd(message: Message): void {
+    this.messgeService.addMessage(message);
   }
 
 }
