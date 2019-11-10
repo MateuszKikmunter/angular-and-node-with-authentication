@@ -8,3 +8,14 @@ body {
   color: white;
   background-color: #303030;
 }
+
+.control-center {
+  display: block;
+  margin-bottom: 20px;
+  margin: 0 auto;
+
+  &--width-50 {
+    @extend .control-center;
+    width: 50%;
+  }
+}

@@ -9,6 +9,7 @@ import { MaterialModule } from './../material/material.module';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageComponent } from './message/message.component';
 import { NewMessageComponent } from './new-message/new-message.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NewMessageComponent } from './new-message/new-message.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class MessageModule { }

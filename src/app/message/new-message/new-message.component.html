@@ -1,1 +1,21 @@
-<p>new-message works!</p>
+<h2 class="text-center">Add new message</h2>
+<div class="form-container">
+    <form novalidate [formGroup]="messageForm">
+        <mat-form-field class="control-center control-center--width-50">
+            <input matInput placeholder="Name" formControlName="messageOwner">
+        </mat-form-field>
+
+        <div *ngIf="messageOwner?.errors.required">
+            <em>Name is required</em>
+        </div>
+
+        <mat-form-field class="control-center control-center--width-50">
+            <textarea rows="5" matInput placeholder="Message" formControlName="messageContent"></textarea>
+        </mat-form-field>
+
+        <button class="control-center mb-10" 
+            mat-button 
+            [disabled]="messageForm?.invalid"
+            (click)="saveMessage()">Submit</button>
+    </form>
+</div>

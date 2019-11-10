@@ -8,9 +8,9 @@ const allowedOrigins = [
 ];
 
 const messages = [
-    { text: "hello", owner: "Matt" },
-    { text: "duck!! duck!!", owner: "Ducky" },
-    { text: "you shall not pass!", owner: "Gandalf" }
+    { content: "hello", owner: "Matt" },
+    { content: "duck!! duck!!", owner: "Ducky" },
+    { content: "you shall not pass!", owner: "Gandalf" }
 ];
 
 app.use(bodyParser.json());
@@ -35,9 +35,9 @@ api.get("/messages", (req, res) => {
 });
 
 api.post("/messages", (req, res) => {
-    messages.push(req.body);
-    console.log(req);
-    res.sendStatus(200)
+    const message = req.body;
+    messages.push(message);
+    res.status(201).json(message);
 });
 
 app.use("/api", api);
