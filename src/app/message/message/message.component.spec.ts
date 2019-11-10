@@ -3,8 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from './../../material/material.module';
 
 import { MessageComponent } from './message.component';
-import { MessageService } from 'src/app/core/services/message.service';
-import { Observable, of } from 'rxjs';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('MessageComponent', () => {
   let component: MessageComponent;
@@ -13,7 +12,8 @@ describe('MessageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MaterialModule
+        MaterialModule,
+        SharedModule,
       ],
       declarations: [
         MessageComponent
