@@ -3,3 +3,9 @@
 .mb-8 {
     margin-bottom: 8px !important;
 }
+
+.pointer-hand {
+    &:hover {
+        cursor: pointer;
+    }
+}
