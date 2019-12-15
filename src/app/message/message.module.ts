@@ -10,12 +10,14 @@ import { MessagesComponent } from './messages/messages.component';
 import { MessageComponent } from './message/message.component';
 import { NewMessageComponent } from './new-message/new-message.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserMessagesComponent } from './user-messages/user-messages.component';
 
 @NgModule({
   declarations: [
     MessagesComponent,
     MessageComponent,
-    NewMessageComponent
+    NewMessageComponent,
+    UserMessagesComponent
   ],
   imports: [
     CommonModule,

@@ -4,10 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 //Application imports
 import { MessagesComponent } from './message/messages/messages.component';
+import { UserMessagesComponent } from './message/user-messages/user-messages.component';
 
 const routes: Routes = [
-  { path: "index", component: MessagesComponent },
-  { path: "**", redirectTo: "index", pathMatch: "full" }
+  { path: "messages", component: MessagesComponent },
+  { path: "user-messages/:username", component: UserMessagesComponent },
+  { path: "**", redirectTo: "messages", pathMatch: "full" }
 ];
 
 @NgModule({

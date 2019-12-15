@@ -1,0 +1,8 @@
+<div class="mt-50" *ngIf="userMessages$ | async as messages; else loading">
+    <h1 class="text-center">{{ currentUser }}'s Messages</h1>
+    <app-message *ngFor="let message of messages" [message]="message"></app-message>
+</div>
+
+<ng-template #loading>
+    Loading data...
+</ng-template>
