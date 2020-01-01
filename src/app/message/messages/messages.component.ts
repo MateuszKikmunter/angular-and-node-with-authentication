@@ -1,8 +1,8 @@
-import { Message } from 'src/app/core/models/message.data-model';
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
+import { Message } from 'src/app/core/models/message.data-model';
 import { MessageService } from '../../core/services/message.service';
 
 @Component({
