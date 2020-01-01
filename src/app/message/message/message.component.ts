@@ -16,6 +16,6 @@ export class MessageComponent implements OnInit {
   ngOnInit() {}
 
   public getUserMessages(): void {
-    this.router.navigateByUrl(`/user-messages/${this.message.owner}`);
+    this.router.navigateByUrl(`messages/${this.message.owner}`);
   }
 }
