@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Message } from 'src/app/shared/models/message.data-model';
+import { Message } from 'src/app/core/models/message.data-model';
 
 @Injectable({
   providedIn: 'root'

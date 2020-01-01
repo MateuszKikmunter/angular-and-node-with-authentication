@@ -1,4 +1,4 @@
-import { Message } from 'src/app/shared/models/message.data-model';
+import { Message } from 'src/app/core/models/message.data-model';
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';

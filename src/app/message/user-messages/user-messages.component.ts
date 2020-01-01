@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
 
 import { MessageService } from "./../../core/services/message.service";
-import { Message } from "src/app/shared/models/message.data-model";
+import { Message } from "src/app/core/models/message.data-model";
 
 @Component({
   selector: "app-user-messages",

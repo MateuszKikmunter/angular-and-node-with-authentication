@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
-import { Message } from 'src/app/shared/models/message.data-model';
+import { Message } from 'src/app/core/models/message.data-model';
 
 @Component({
   selector: 'app-new-message',
