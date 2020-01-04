@@ -1,1 +1,28 @@
-<p>register works!</p>
+<h2 class="text-center">Register</h2>
+<form novalidate [formGroup]="registerForm" novalidate>
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="first name" formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="last name" formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="email" type="email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="password" type="password" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="confirm password" type="password" formControlName="confirmPassword">
+    </mat-form-field>
+
+    <button 
+        class="control-center mb-10" 
+        mat-flat-button color="primary"
+        [disabled]="registerForm?.invalid">Submit
+    </button>
+</form>
