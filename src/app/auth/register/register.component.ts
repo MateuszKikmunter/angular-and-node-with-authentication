@@ -16,6 +16,10 @@ export class RegisterComponent implements OnInit {
     this.buildForm();
   }
 
+  public onSubmit(): void {
+    
+  }
+
   private buildForm(): void {
     this.registerForm = this.formBuilder.group({
       firstName: [ null, [ Validators.required, Validators.maxLength(255), Validators.minLength(3) ] ],
