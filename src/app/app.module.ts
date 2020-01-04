@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MessageModule } from './message/message.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MaterialModule } from 'src/app/material/material.module';
     HttpClientModule,
     ReactiveFormsModule,
     MessageModule,
+    AuthModule,
     AppRoutingModule,
     MaterialModule
   ],
