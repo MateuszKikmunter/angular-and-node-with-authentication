@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    
   }
 
   private buildForm(): void {
@@ -27,7 +26,13 @@ export class RegisterComponent implements OnInit {
       email: [ null, [ Validators.required, Validators.maxLength(255), Validators.minLength(3), Validators.email ] ],
       password: [ null, [ Validators.required, Validators.maxLength(255), Validators.minLength(3) ] ],
       confirmPassword: [ null, [ Validators.required, Validators.maxLength(255), Validators.minLength(3) ] ],
-    });
+    }, { validator: this.passwordMatched });
+  }
+
+  private passwordMatched(form: FormGroup): object | null {
+    return form.get("password").value !== form.get("confirmPassword").value
+      ? { mismatchedValue: true }
+      : null;
   }
 
 }
