@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
+import { environment } from './../../../environments/environment';
 import { Message } from 'src/app/core/models/message.data-model';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Message } from 'src/app/core/models/message.data-model';
 })
 export class MessageService {
 
-  private apiUrl: string = `http://localhost:4201/api/messages`;
+  private apiUrl: string = `${environment.api.baseUrl}/messages`;
 
   private messageSubject: BehaviorSubject<Message[]> = new BehaviorSubject<Message[]>([]);
   public readonly messages$: Observable<Message[]> = this.messageSubject.asObservable();
