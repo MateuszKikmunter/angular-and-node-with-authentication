@@ -48,9 +48,9 @@ api.post("/messages", (req, res) => {
 });
 
 authRouter.post("/register", (req, res) => {
-    const userAlreadyExists = users.some(user => user.emal === req.body.email);
+    const userAlreadyExists = users.some(user => user.email === req.body.email);
     if (userAlreadyExists) {
-        req.status(500);
+        res.status(500).json("User already exists");
     } else {
         const body = req.body;
         const user = {
