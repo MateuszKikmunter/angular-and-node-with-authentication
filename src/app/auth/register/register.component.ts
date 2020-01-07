@@ -23,12 +23,14 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.authService.register(new UserForCreation(
-      this.registerForm.get("firstName").value,
-      this.registerForm.get("lastName").value,
-      this.registerForm.get("email").value,
-      this.registerForm.get("password").value
-    ));
+    const userToAdd: UserForCreation = {
+      firstName: this.registerForm.get("firstName").value,
+      lastName: this.registerForm.get("lastName").value,
+      email: this.registerForm.get("email").value,
+      password: this.registerForm.get("password").value
+    };
+
+    this.authService.register(userToAdd);
   }
 
   private buildForm(): void {
