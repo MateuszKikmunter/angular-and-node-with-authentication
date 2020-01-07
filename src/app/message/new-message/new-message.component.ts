@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
-import { Message } from 'src/app/core/models/message.data-model';
+import { MessageForCreation } from './../../core/models/message/message-for-creation-data.model';
 
 @Component({
   selector: 'app-new-message',
@@ -20,7 +20,7 @@ export class NewMessageComponent implements OnInit {
     return this.messageForm.get("messageContent");
   }
 
-  @Output() messageAdd: EventEmitter<Message> = new EventEmitter<Message>();
+  @Output() messageAdd: EventEmitter<MessageForCreation> = new EventEmitter<MessageForCreation>();
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -30,7 +30,7 @@ export class NewMessageComponent implements OnInit {
 
   public saveMessage(): void {
     if (this.messageForm.valid) {
-      const message: Message = {
+      const message: MessageForCreation = {
         owner: this.messageOwner.value,
         content: this.messageContent.value
       };

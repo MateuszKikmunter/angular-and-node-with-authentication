@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { Message } from "src/app/core/models/message.data-model";
+import { Message } from "src/app/core/models/message/message.data-model";
 
 @Component({
   selector: "app-message",

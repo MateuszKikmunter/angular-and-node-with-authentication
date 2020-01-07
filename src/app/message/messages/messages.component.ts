@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Message } from 'src/app/core/models/message.data-model';
+import { Message } from 'src/app/core/models/message/message.data-model';
+import { MessageForCreation } from './../../core/models/message/message-for-creation-data.model';
 import { MessageService } from '../../core/services/message.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class MessagesComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onMessageAdd(message: Message): void {
+  public onMessageAdd(message: MessageForCreation): void {
     this.messgeService.addMessage(message);
   }
 

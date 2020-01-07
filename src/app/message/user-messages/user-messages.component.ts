@@ -3,8 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { map } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
 
+import { Message } from 'src/app/core/models/message/message.data-model';
 import { MessageService } from "./../../core/services/message.service";
-import { Message } from "src/app/core/models/message.data-model";
 
 @Component({
   selector: "app-user-messages",
