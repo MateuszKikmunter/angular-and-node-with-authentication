@@ -1,5 +1,8 @@
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
+import { UserForCreation } from '../../core/models/user/user-for-creation-data.model';
+import { AuthService } from './../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +13,22 @@ export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
     this.buildForm();
   }
 
   public onSubmit(): void {
+    this.authService.register(new UserForCreation(
+      this.registerForm.get("firstName").value,
+      this.registerForm.get("lastName").value,
+      this.registerForm.get("email").value,
+      this.registerForm.get("password").value
+    ));
   }
 
   private buildForm(): void {

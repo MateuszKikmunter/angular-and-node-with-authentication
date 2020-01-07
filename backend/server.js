@@ -8,10 +8,12 @@ const allowedOrigins = [
 ];
 
 const messages = [
-    { content: "hello", owner: "Matt" },
-    { content: "duck!! duck!!", owner: "Ducky" },
-    { content: "you shall not pass!", owner: "Gandalf" }
+    { id: 1, content: "hello", owner: "Matt" },
+    { id: 2, content: "duck!! duck!!", owner: "Ducky" },
+    { id: 3, content: "you shall not pass!", owner: "Gandalf" }
 ];
+
+const users = [];
 
 app.use(bodyParser.json());
 app.use(cors({
@@ -29,16 +31,46 @@ app.use(cors({
 }));
 
 const api = express.Router();
+const authRouter = express.Router();
 
 api.get("/messages", (req, res) => {
     res.json(messages);
 });
 
 api.post("/messages", (req, res) => {
-    const message = req.body;
+    const message = {
+        id: messages.length + 1,
+        content: req.body.content,
+        owner: req.body.owner
+    };
     messages.push(message);
     res.status(201).json(message);
 });
 
+authRouter.post("/register", (req, res) => {
+    const userAlreadyExists = users.some(user => user.emal === req.body.email);
+    if (userAlreadyExists) {
+        req.status(500);
+    } else {
+        const body = req.body;
+        const user = {
+            id: users.length + 1,
+            firstName: body.firstName,
+            lastName: body.lastName,
+            email: body.email,
+            password: body.password
+        };
+        
+        users.push(user);
+        res.status(201).json({
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email
+        });
+    }
+});
+
 app.use("/api", api);
+app.use("/auth", authRouter);
 app.listen(4201);

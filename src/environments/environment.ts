@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  api: {
-    baseUrl: "http://localhost:4201/api"
+  apiConfig: {
+    baseUrl: "http://localhost:4201",
+    baseRoute: "api",
+    authRoute: "auth"
   }
 };
 
