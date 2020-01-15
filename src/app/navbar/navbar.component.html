@@ -3,8 +3,9 @@
     <a [routerLink]="['/register']" class="nav-link" *ngIf="!isAuthenticated">Register</a>
     <span class="fill-remaining-space"></span>
     <span class="pointer-hand" 
-        *ngIf="isAuthenticated"
-        matTooltip="Log out"
+        *ngIf="isAuthenticated" 
+        matTooltip="Log out" 
         (click)="logOut()">Welcome {{ currentUser }}
     </span>
+    <a class="nav-link" *ngIf="!isAuthenticated" [routerLink]="['/login']">Log In</a>
 </mat-toolbar>
