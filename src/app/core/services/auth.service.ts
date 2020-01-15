@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 
 import { LoginData } from './../models/auth/login-data.model';
 import { UserForCreation } from "../models/user/user-for-creation-data.model";
+import { SnackService } from './snack.service';
 
 @Injectable({
   providedIn: "root"
@@ -23,14 +24,24 @@ export class AuthService {
   private tokenKey: string = "token";
   private nameKey: string = "firstName";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private snackBar: SnackService
+    ) {}
 
   public register(user: UserForCreation) {
-    this.http.post(`${this.apiUrl}/register`, user).subscribe(response => this.authenticate(response));
+    this.http.post(`${this.apiUrl}/register`, user).subscribe(
+      response => this.authenticate(response),
+      error => this.handleError(error.error)
+    );
   }
 
   public logIn(loginData: LoginData): void {
-    this.http.post(`${this.apiUrl}/login`, loginData).subscribe(response => this.authenticate(response));
+    this.http.post(`${this.apiUrl}/login`, loginData).subscribe(
+      response => this.authenticate(response),
+      error => this.handleError(error.error)
+    );
   }
 
   public logOut(): void {
@@ -42,5 +53,9 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, response[this.tokenKey]);
     localStorage.setItem(this.nameKey, response[this.nameKey]);
     this.router.navigate(["/"]);
+  }
+  
+  private handleError(errorMessage: string): void {
+    this.snackBar.openSnackBar(errorMessage);
   }
 }
