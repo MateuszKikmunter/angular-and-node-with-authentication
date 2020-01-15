@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
 
 const allowedOrigins = [
     "http://localhost:4200"
@@ -60,14 +61,13 @@ authRouter.post("/register", (req, res) => {
             email: body.email,
             password: body.password
         };
-        
+
         users.push(user);
-        res.status(201).json({
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email
-        });
+        res.status(200).json(
+            {
+                firstName: user.firstName,
+                token: jwt.sign(user.id, "secret")
+            });
     }
 });
 

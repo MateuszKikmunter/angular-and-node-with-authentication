@@ -1,12 +1,16 @@
 .nav-link {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .navbar-brand {
-    font-size: larger;
+  font-size: larger;
 }
 
 .mr-10 {
-    margin-right: 10px;
+  margin-right: 10px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
 }
