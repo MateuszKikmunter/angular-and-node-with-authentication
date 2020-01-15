@@ -1,1 +1,16 @@
-<p>log-in works!</p>
+<h2 class="text-center">Log In</h2>
+<form novalidate [formGroup]="logInForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="email" type="email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field class="control-center control-center--width-50">
+        <input matInput placeholder="password" type="password" formControlName="password">
+    </mat-form-field>
+
+    <button 
+        class="control-center mb-10" 
+        mat-flat-button color="primary"
+        [disabled]="logInForm?.invalid">Submit
+    </button>
+</form>
