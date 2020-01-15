@@ -21,6 +21,9 @@ export class LogInComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    if (this.logInForm.valid) {
+      this.authService.logIn(this.logInForm.value);
+    }
   }
 
   private buildForm(): void {

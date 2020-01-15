@@ -63,13 +63,30 @@ authRouter.post("/register", (req, res) => {
         };
 
         users.push(user);
-        res.status(200).json(
-            {
-                firstName: user.firstName,
-                token: jwt.sign(user.id, "secret")
-            });
+        res.status(200).json(createToken(user));
     }
 });
+
+
+authRouter.post("/login", (req, res) => {
+    const user = users.find(user => user.email === req.body.email);
+    if (!user) {
+        res.status(404).json("User not found");
+    } else {
+        if (user.email === req.body.email && user.password === req.body.password) {
+            res.status(200).json(createToken(user));
+        } else {
+            res.status(500).json("Invalid username or password");
+        }
+    }
+});
+
+const createToken = (user) => {
+    return {
+        firstName: user.firstName,
+        token: jwt.sign(user.id, "secret")
+    };
+};
 
 app.use("/api", api);
 app.use("/auth", authRouter);
