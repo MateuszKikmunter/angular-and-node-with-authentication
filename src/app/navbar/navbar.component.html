@@ -2,9 +2,9 @@
     <a [routerLink]="['/messages']" class="navbar-brand nav-link mr-10">Message Board</a>
     <a [routerLink]="['/register']" class="nav-link" *ngIf="!isAuthenticated">Register</a>
     <span class="fill-remaining-space"></span>
-    <a class="nav-link" href="#"
+    <span class="pointer-hand" 
         *ngIf="isAuthenticated"
         matTooltip="Log out"
         (click)="logOut()">Welcome {{ currentUser }}
-    </a>
+    </span>
 </mat-toolbar>
