@@ -1,11 +1,12 @@
-import { environment } from './../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
+import { environment } from "./../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
-import { UserForCreation } from '../models/user/user-for-creation-data.model';
+import { UserForCreation } from "../models/user/user-for-creation-data.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
 
@@ -21,12 +22,13 @@ export class AuthService {
   private tokenKey: string = "token";
   private nameKey: string = "firstName";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   public register(user: UserForCreation) {
     this.http.post(`${this.apiUrl}/register`, user).subscribe(res => {
       localStorage.setItem(this.tokenKey, res[this.tokenKey]);
       localStorage.setItem(this.nameKey, res[this.nameKey]);
+      this.router.navigate(["/"]);
     });
   }
 
