@@ -69,7 +69,6 @@ authRouter.post("/register", (req, res) => {
         };
 
         users.push(user);
-        console.log(users);
         res.status(200).json({
             user: response,
             token: createToken(response)
@@ -78,7 +77,6 @@ authRouter.post("/register", (req, res) => {
 });
 
 authRouter.post("/login", (req, res) => {
-    console.log(users);
     const user = users.find(user => user.email === req.body.email);
     if (!user) {
         res.status(404).json("User not found");
