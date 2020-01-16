@@ -1,3 +1,4 @@
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from "@angular/router";
 import { environment } from "./../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
@@ -6,33 +7,39 @@ import { Injectable } from "@angular/core";
 import { LoginData } from './../models/auth/login-data.model';
 import { UserForCreation } from "../models/user/user-for-creation-data.model";
 import { SnackService } from './snack.service';
+import { UserService } from './user.service';
+import { User } from './../models/user/user-data.model';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
 
-  get name(): string {
-    return localStorage.getItem(this.nameKey);
-  }
-
   get isAuthenticated(): boolean {
     return !!localStorage.getItem(this.tokenKey);
   }
 
+  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(undefined);
+  public readonly currentUser$: Observable<User> = this.currentUserSubject.asObservable();
+
   private apiUrl: string = `${environment.apiConfig.baseUrl}/${environment.apiConfig.authRoute}`;
   private tokenKey: string = "token";
-  private nameKey: string = "firstName";
 
   constructor(
     private http: HttpClient, 
     private router: Router, 
-    private snackBar: SnackService
-    ) {}
+    private snackBar: SnackService,
+    private userService: UserService
+    ) {
+      this.userService.getUserDetails().subscribe(user => this.currentUserSubject.next(user));
+    }
 
   public register(user: UserForCreation) {
     this.http.post(`${this.apiUrl}/register`, user).subscribe(
-      response => this.authenticate(response),
+      response => {
+        this.authenticate(response);
+        this.currentUserSubject.next(response["user"]);
+      },
       error => this.handleError(error.error)
     );
   }
@@ -46,12 +53,10 @@ export class AuthService {
 
   public logOut(): void {
     localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.nameKey);
   }
 
   private authenticate(response: object): void {
     localStorage.setItem(this.tokenKey, response[this.tokenKey]);
-    localStorage.setItem(this.nameKey, response[this.nameKey]);
     this.router.navigate(["/"]);
   }
   

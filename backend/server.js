@@ -33,6 +33,7 @@ app.use(cors({
 
 const api = express.Router();
 const authRouter = express.Router();
+const userRouter = express.Router();
 
 api.get("/messages", (req, res) => {
     res.json(messages);
@@ -62,19 +63,28 @@ authRouter.post("/register", (req, res) => {
             password: body.password
         };
 
+        const response = {
+            id: user.id,
+            firstName: user.firstName
+        };
+
         users.push(user);
-        res.status(200).json(createToken(user));
+        console.log(users);
+        res.status(200).json({
+            user: response,
+            token: createToken(response)
+        });
     }
 });
 
-
 authRouter.post("/login", (req, res) => {
+    console.log(users);
     const user = users.find(user => user.email === req.body.email);
     if (!user) {
         res.status(404).json("User not found");
     } else {
         if (user.email === req.body.email && user.password === req.body.password) {
-            res.status(200).json(createToken(user));
+            res.status(200).json({ token: createToken(user) });
         } else {
             res.status(500).json("Invalid username or password");
         }
@@ -82,12 +92,38 @@ authRouter.post("/login", (req, res) => {
 });
 
 const createToken = (user) => {
-    return {
-        firstName: user.firstName,
-        token: jwt.sign(user.id, "secret")
-    };
+    return jwt.sign(user.id, "secret");
 };
+
+const checkAuthenticated = (req, res, next) => {
+    if (!req.header("authorization")) {
+        return res.status(401).send("Unauthorized request");
+    }
+
+    const token = req.header("authorization").split(" ")[1];
+    const payload = jwt.decode(token, "secret");
+
+    if (!payload) {
+        return res.status(401).send("Unauthorized request");
+    }
+
+    req.userId = payload;
+    next();
+};
+
+userRouter.get("/me", checkAuthenticated, (req, res) => {
+    const user = users.find(user => user.id === parseInt(req.userId));
+    if (!user) {
+        res.status(404).json("User not found");
+    } else {
+        res.status(200).json({
+            id: user.id,
+            firstName: user.firstName
+        });
+    }
+});
 
 app.use("/api", api);
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 app.listen(4201);

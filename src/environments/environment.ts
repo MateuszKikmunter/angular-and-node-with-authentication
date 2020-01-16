@@ -7,7 +7,8 @@ export const environment = {
   apiConfig: {
     baseUrl: "http://localhost:4201",
     baseRoute: "api",
-    authRoute: "auth"
+    authRoute: "auth",
+    userRoute: "user"
   }
 };
 
