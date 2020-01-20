@@ -6,11 +6,11 @@ import { UserMessagesComponent } from "./user-messages/user-messages.component";
 
 const messagesRoutes: Routes = [
   {
-    path: "messages",
+    path: "",
     component: MessagesComponent,
   },
   {
-    path: "messages/:username",
+    path: ":username",
     component: UserMessagesComponent
   }
 ];

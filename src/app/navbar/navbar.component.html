@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <a [routerLink]="['/messages']" class="navbar-brand nav-link mr-10">Message Board</a>
-    <a [routerLink]="['/register']" class="nav-link" *ngIf="!isAuthenticated">Register</a>
+    <a [routerLink]="['/auth/register']" class="nav-link" *ngIf="!isAuthenticated">Register</a>
     <span class="fill-remaining-space"></span>
     <div *ngIf="currentUser | async as user">
         <span class="pointer-hand" 
@@ -9,5 +9,5 @@
         (click)="logOut()">Welcome {{ user?.firstName }}
     </span>
     </div>
-    <a class="nav-link" *ngIf="!isAuthenticated" [routerLink]="['/login']">Log In</a>
+    <a class="nav-link" *ngIf="!isAuthenticated" [routerLink]="['/auth/log-in']">Log In</a>
 </mat-toolbar>

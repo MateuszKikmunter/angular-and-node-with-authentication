@@ -10,7 +10,7 @@ const authRoutes: Routes = [
     component: RegisterComponent
   },
   {
-    path: "login",
+    path: "log-in",
     component: LogInComponent
   }
 ];
